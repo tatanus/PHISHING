@@ -1,0 +1,7 @@
+Good Morning
+
+In light of recent email phishing attempts, we are partnering Safelogin to provide additional login and anti-phishing protection.
+
+As the initial integration is complete, we ask that you verify that you can access the site [ http://TARGET.safelogin.co ] with out issue.
+
+HelpDesk

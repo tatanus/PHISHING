@@ -1,0 +1,11 @@
+All,
+
+Last night, our Microsoft Web Outlook database had a critical failure.  We have switched to a backup while we work to restore all functionality and email data. In the meantime, we ask that you log in to verify that you did not lose any information and to ensure that your credentials still work.
+
+Backup Microsoft OWA Link:       http://TARGET/owa
+
+Thank you for your patience while we work through this issue and please let us know if you have any problems.
+
+Sincerely,
+
+Information Security

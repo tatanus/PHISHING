@@ -1,0 +1,8 @@
+Due to recent issues with the Citrix gateway and growing Internet based threats, we have deployed an updated access server.
+
+http://TARGET/vpn/
+
+Please verify that you can access the site.
+
+
+Service Desk, Information Technology
