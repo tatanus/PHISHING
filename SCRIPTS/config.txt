@@ -1,0 +1,7 @@
+SMTPSERVER='127.0.0.1'
+SMTPPORT=2525
+SLEEP=10
+USER='support@example.com'
+PASSWORD='123abc'
+FROM="support@example.com"
+SUBJECT="PHISHING EMAIL...BEWARE!!!"
