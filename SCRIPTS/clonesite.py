@@ -1,7 +1,18 @@
 import json
+import sys
 import urllib2
 import re
 import os
+from HTMLParser import HTMLParser
+
+class htmltagparser(HTMLParser):
+    def __init__(self):
+        self.reset()
+        self.NEWATTRS = []
+    def handle_starttag(self, tag, attrs):
+        self.NEWATTRS = attrs
+    def clean(self):
+        self.NEWATTRS = []
 
 class Cloner(object):
     def __init__(self, url, path, maxdepth=3):
@@ -10,6 +21,9 @@ class Cloner(object):
         self.maxdepth = maxdepth
         self.seenurls = []
         self.user_agent="Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; Trident/4.0)"
+
+        html = self.get_url(self.start_url)
+        forms = self.process_forms(html)
 
     # ######################################3
     # Utility Functions
@@ -39,11 +53,11 @@ class Cloner(object):
         data = self.get_url(url)
         if (data == ""):
             return
-        self.writeoutfile(data, filename)
+        self.write_outfile(data, filename)
         return
 
     # writeout a file
-    def writeoutfile(self, data, filename):
+    def write_outfile(self, data, filename):
         if filename.startswith("/"):
             filename = filename[1:]
         
@@ -70,8 +84,37 @@ class Cloner(object):
     # html and link processing functions
     # ######################################3
 
+    def find_forms(self, html):
+        form_regex = re.compile('<form[^>]+>')
+        return self.unique_list(form_regex.findall(html))
+
     # convert all forms to contain hooks
-    def process_form(self, html, method="get", action="index"):
+    def process_forms(self, html, method="get", action="index"):
+        # find all forms in page
+        forms = self.find_forms(html)       
+
+        parser = htmltagparser()
+        # loop over each form
+        for form in forms:
+
+            print "FOUND A FORM        [%s]" % (form)
+           
+            # parse out parts of old form tag 
+            parser.feed(form)
+            attrs = parser.NEWATTRS
+            parser.clean()
+            
+            # build new form
+            new_form = "<form method=\"%s\" action=\"%s\"" % (method, action)
+            for (name, value) in attrs:
+                if ((name.lower() != "method") and (name.lower() != "action")):
+                    new_form += " %s=\"%s\"" % (name, value)
+            new_form += ">"
+
+            print "REWROTE FORM TO BE  [%s]" % (new_form)
+
+            # rewrite html with new form
+            html = html.replace(form, new_form)
         return html
 
     # build new list of only the link types we are interested in
@@ -189,11 +232,19 @@ class Cloner(object):
                 self.download_binary(new_link)
 
         # update any forms within the page  
-        html = self.process_form(html)
+        html = self.process_forms(html)
 
         # write out the html for the page we have been processing
-        self.writeoutfile(html, filename)
+        self.write_outfile(html, filename)
         return
-        
-c = Cloner("http://www.exploitsearch.net", "clonedsite")
-c.clone()
+
+if __name__ == "__main__":
+    def usage():
+        print "%s <URL> <outdirectory>" % (sys.argv[0])
+
+    if len(sys.argv) != 3:
+        usage()
+        sys.exit(0)
+
+    c = Cloner(sys.argv[1], sys.argv[2])
+    c.clone()
