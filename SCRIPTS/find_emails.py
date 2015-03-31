@@ -50,4 +50,11 @@ def gather(domain, maxoffset=500):
     return unique_list(all_emails)
 
 if __name__ == "__main__":
-    print gather("example.com")
+    def usage():
+        print "%s <target domain>" % (sys.argv[0])
+
+    if len(sys.argv) != 2:
+        usage()
+        sys.exit(0)
+
+    print gather(sys.argv[1])
