@@ -37,7 +37,7 @@ def gather(domain, maxoffset=500):
     # There is currently an issue with duckduckgo
     all_emails = []
 
-#    all_emails += email_search(url="http://www.google.com/search?num=100&start=[[OFFSET]]&hl=en&meta=&q=%40\"" + domain + "\"", domain=domain, offset=100, maxoffset=maxoffset)
+    all_emails += email_search(url="http://www.google.com/search?num=100&start=[[OFFSET]]&hl=en&meta=&q=%40\"" + domain + "\"", domain=domain, offset=100, maxoffset=maxoffset)
     all_emails += email_search(url="http://www.bing.com/search?q=" + domain + "&count=50&first=[[OFFSET]]", domain=domain, offset=50, maxoffset=maxoffset)
     all_emails += email_search(url="http://www.ask.com/web?q=%40" + domain + "&pu=100&page=[[OFFSET]]", domain=domain, offset=100, maxoffset=maxoffset)
     all_emails += email_search(url="http://www.dogpile.com/search/web?qsi=[[OFFSET]]&q=\"%40" + domain + "\"", domain=domain, offset=10, maxoffset=maxoffset/10)
