@@ -44,7 +44,7 @@ def gather(domain, maxoffset=500):
     all_emails += email_search(url="http://www.yandex.com/search?text=%40" + domain + "&numdoc=50&lr=[[OFFSET]]", domain=domain, offset=50, maxoffset=maxoffset)
     all_emails += email_search(url="http://www.baidu.com/s?wd=%40" + domain + "&pn=[[OFFSET]]", domain=domain, offset=10, maxoffset=maxoffset/10)
     all_emails += email_search(url="https://search.yahoo.com/search?p=\"%40" + domain + "\"&b=[[OFFSET]]&pz=10", domain=domain, offset=10, maxoffset=maxoffset/10)
-    all_emails += email_search(url="https://duckduckgo.com/html?q=\"%40" + domain + "\"", domain=domain)
+    #all_emails += email_search(url="https://duckduckgo.com/html?q=\"%40" + domain + "\"", domain=domain)
     all_emails += email_search(url="https://duckduckgo.com/lite?q=\"%40" + domain + "\"", domain=domain)
 
     return unique_list(all_emails)
