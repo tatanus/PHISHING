@@ -242,7 +242,7 @@ class Cloner(object):
 
 if __name__ == "__main__":
     def usage():
-        print "%s <URL> <outdirectory> (optional <form method>)" % (sys.argv[0])
+        print "%s <URL> <outdirectory> (optional <form action>)" % (sys.argv[0])
 
     if ((len(sys.argv) < 3) or (len(sys.argv) > 4)):
         usage()
