@@ -22,9 +22,6 @@ class Cloner(object):
         self.seenurls = []
         self.user_agent="Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1; Trident/4.0)"
 
-        html = self.get_url(self.start_url)
-        forms = self.process_forms(html)
-
     # ######################################3
     # Utility Functions
     # ######################################3
@@ -58,6 +55,7 @@ class Cloner(object):
 
     # writeout a file
     def write_outfile(self, data, filename):
+        print "DLf = %s" % (filename)
         if filename.startswith("/"):
             filename = filename[1:]
         
@@ -121,6 +119,7 @@ class Cloner(object):
     def process_links(self, links):
         new_links = []
         for link in links:
+            print link
             link = link.lower()
             if (link.endswith(".css")  or 
                 link.endswith(".html") or
@@ -140,7 +139,7 @@ class Cloner(object):
         return new_links
     
     # primary recersive function used to clone and crawl the site
-    def clone(self, depth=0, url="", base=""):
+    def clone(self, depth=0, url="", base="", method="get", action="index"):
         # early out if max depth is reached
         if (depth > self.maxdepth):
             print "MAX URL DEPTH       [%s]" % (url)
@@ -186,7 +185,7 @@ class Cloner(object):
         links += re.findall(r"<script.*?\s*src=\"(.*?)\".*?>", html)
         links += re.findall(r"<img.*?\s*src=\"(.*?)\".*?>", html)
         links += re.findall(r"\"(.*?)\"", html)
-        links += re.findall(r"url(\"(.*?)\");", html)
+        links += re.findall(r"url\(\"?(.*?)\"?\);", html)
 
         links = self.process_links(self.unique_list(links))
 
@@ -196,6 +195,8 @@ class Cloner(object):
             new_link = link
             if link.startswith("http"):
                 new_link = link
+            elif link.startswith("//"):
+                new_link = "http:" + link
             elif link.startswith("/"):
                 new_link = base + link
             elif link.startswith("../"):
@@ -229,10 +230,11 @@ class Cloner(object):
                     self.clone(url=new_link, depth=depth+1)
             else:
                 # must be a binary file, so just download it
+                print "downloading %s" % (new_link)
                 self.download_binary(new_link)
 
         # update any forms within the page  
-        html = self.process_forms(html)
+        html = self.process_forms(html, action=action)
 
         # write out the html for the page we have been processing
         self.write_outfile(html, filename)
@@ -240,11 +242,14 @@ class Cloner(object):
 
 if __name__ == "__main__":
     def usage():
-        print "%s <URL> <outdirectory>" % (sys.argv[0])
+        print "%s <URL> <outdirectory> (optional <form method>)" % (sys.argv[0])
 
-    if len(sys.argv) != 3:
+    if ((len(sys.argv) < 3) or (len(sys.argv) > 4)):
         usage()
         sys.exit(0)
 
     c = Cloner(sys.argv[1], sys.argv[2])
-    c.clone()
+    if len(sys.argv) == 4:
+        c.clone(action=sys.argv[3])
+    else:
+        c.clone()
